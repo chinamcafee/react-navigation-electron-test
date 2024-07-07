@@ -1,0 +1,59 @@
+diff --git a/node_modules/@expo/webpack-config/webpack/webpack.config.js b/node_modules/@expo/webpack-config/webpack/webpack.config.js
+index 3c629ef..b742093 100644
+--- a/node_modules/@expo/webpack-config/webpack/webpack.config.js
++++ b/node_modules/@expo/webpack-config/webpack/webpack.config.js
+@@ -279,30 +279,30 @@ async function default_1(env, argv = {}) {
+             //   `index.html`
+             // - "entrypoints" key: Array of files which are included in `index.html`,
+             //   can be used to reconstruct the HTML if necessary
+-            new webpack_manifest_plugin_1.WebpackManifestPlugin({
+-                fileName: 'asset-manifest.json',
+-                publicPath,
+-                filter: ({ path }) => {
+-                    if (path.match(/(apple-touch-startup-image|apple-touch-icon|chrome-icon|precache-manifest)/)) {
+-                        return false;
+-                    }
+-                    // Remove compressed versions and service workers
+-                    return !(path.endsWith('.gz') || path.endsWith('worker.js'));
+-                },
+-                generate: (seed, files, entrypoints) => {
+-                    const manifestFiles = files.reduce((manifest, file) => {
+-                        if (file.name) {
+-                            manifest[file.name] = file.path;
+-                        }
+-                        return manifest;
+-                    }, seed);
+-                    const entrypointFiles = entrypoints.main.filter(fileName => !fileName.endsWith('.map'));
+-                    return {
+-                        files: manifestFiles,
+-                        entrypoints: entrypointFiles,
+-                    };
+-                },
+-            }),
++            // new webpack_manifest_plugin_1.WebpackManifestPlugin({
++            //     fileName: 'asset-manifest.json',
++            //     publicPath,
++            //     filter: ({ path }) => {
++            //         if (path.match(/(apple-touch-startup-image|apple-touch-icon|chrome-icon|precache-manifest)/)) {
++            //             return false;
++            //         }
++            //         // Remove compressed versions and service workers
++            //         return !(path.endsWith('.gz') || path.endsWith('worker.js'));
++            //     },
++            //     generate: (seed, files, entrypoints) => {
++            //         const manifestFiles = files.reduce((manifest, file) => {
++            //             if (file.name) {
++            //                 manifest[file.name] = file.path;
++            //             }
++            //             return manifest;
++            //         }, seed);
++            //         const entrypointFiles = entrypoints.main.filter(fileName => !fileName.endsWith('.map'));
++            //         return {
++            //             files: manifestFiles,
++            //             entrypoints: entrypointFiles,
++            //         };
++            //     },
++            // }),
+             // TODO: Drop
+             new plugins_1.ExpectedErrorsPlugin(),
+             // Skip using a progress bar in CI
